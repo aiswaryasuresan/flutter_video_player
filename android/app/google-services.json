@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "228136608818",
+    "project_id": "video-player-app-cdd1f",
+    "storage_bucket": "video-player-app-cdd1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228136608818:android:88cd91410b417a8202882b",
+        "android_client_info": {
+          "package_name": "com.example.flutter_video_player"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbjBIfqkbVNGf6ebBUuF_9k327NxLqTSg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
