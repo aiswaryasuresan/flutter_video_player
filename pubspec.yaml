@@ -16,10 +16,56 @@ dependencies:
   firebase_auth: ^4.17.9
   firebase_core: ^2.27.1
   get: 4.6.6
-
+  #
+  #
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.1
+  #
+  #
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Thin.ttf
+          weight: 100
+        - asset: fonts/Poppins-ThinItalic.ttf
+          weight: 100
+          style: italic
+        - asset: fonts/Poppins-Light.ttf
+          weight: 300
+        - asset: fonts/Poppins-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: fonts/Poppins-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: fonts/Poppins-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Poppins-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: fonts/Poppins-Bold.ttf
+          weight: 700
+        - asset: fonts/Poppins-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: fonts/Poppins-ExtraBold.ttf
+          weight: 800
+        - asset: fonts/Poppins-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: fonts/Poppins-Black.ttf
+          weight: 900
+        - asset: fonts/Poppins-BlackItalic.ttf
+          weight: 900
+          style: italic

@@ -1,23 +1,27 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_video_player/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
-  //TODO: Implement LoginController
+  final formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  void login() {
+    if (formKey.currentState!.validate()) {
+      String email = emailController.text;
+      String password = passwordController.text;
+      print('Username: $email');
+      print('Password: $password');
+    }
   }
 
   @override
-  void onReady() {
-    super.onReady();
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
+  void goToRegistration() => Get.toNamed(Routes.REGISTER);
 }
