@@ -9,12 +9,22 @@ dependencies:
   flutter:
     sdk: flutter
   http:
+  file_picker: ^6.2.0
   path_provider: ^2.1.2
+  path: ^1.9.0
   video_player: ^2.8.3
+  chewie: ^1.7.5
   cupertino_icons: ^1.0.6
-  intl_phone_field: ^3.2.0
-  firebase_auth: ^4.17.9
+  get_storage: ^2.1.1
+  encrypt: ^5.0.3
+  crypto: ^3.0.3
+  flutter_windowmanager: ^0.2.0
+  #Firebase pubs
   firebase_core: ^2.27.1
+  firebase_auth: ^4.17.9
+  cloud_firestore: ^4.15.9
+  firebase_storage: ^11.6.10
+  #getx
   get: 4.6.6
   #
   #
@@ -26,6 +36,8 @@ dev_dependencies:
   #
 flutter:
   uses-material-design: true
+  assets:
+    - assets/
   fonts:
     - family: Poppins
       fonts:

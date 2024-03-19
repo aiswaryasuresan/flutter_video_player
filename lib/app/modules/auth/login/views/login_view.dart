@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_video_player/app/modules/auth/login/controllers/login_controller.dart';
+import 'package:flutter_video_player/app/modules/auth/login/views/login_mobile_view.dart';
+import 'package:flutter_video_player/app/modules/auth/login/views/login_otp_view.dart';
+import 'package:flutter_video_player/app/modules/widgets/loading_widget.dart';
 import 'package:get/get.dart';
 
 class LoginView extends StatelessWidget {
@@ -12,55 +15,12 @@ class LoginView extends StatelessWidget {
         title: const Text('Login'),
         centerTitle: true,
       ),
-      body: GetBuilder<LoginController>(builder: (_) {
-        return SingleChildScrollView(
-          padding: const EdgeInsets.all(14),
-          child: Form(
-            key: _.formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                TextFormField(
-                  controller: _.emailController,
-                  decoration: const InputDecoration(labelText: 'Email'),
-                  validator: (value) {
-                    if ((value ?? '').isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  controller: _.passwordController,
-                  decoration: const InputDecoration(labelText: 'Password'),
-                  obscureText: true,
-                  validator: (value) {
-                    if ((value ?? '').isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    _.login();
-                  },
-                  child: const Text('Login'),
-                ),
-                const SizedBox(height: 20),
-                const SizedBox(height: 20),
-                const Center(child: Text('Don\'t have account?,')),
-                const SizedBox(height: 4),
-                ElevatedButton(
-                  onPressed: () => _.goToRegistration(),
-                  child: const Text('Signup'),
-                ),
-              ],
-            ),
-          ),
-        );
+      body: GetBuilder<LoginController>(builder: (controller) {
+        return controller.isLoading
+            ? const LoadingWidget()
+            : controller.isSendOtp
+                ? const LoginOtpView()
+                : const LoginMobileView();
       }),
     );
   }
