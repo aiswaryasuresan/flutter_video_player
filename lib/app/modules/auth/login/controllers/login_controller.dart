@@ -99,7 +99,7 @@ class LoginController extends GetxController {
   }
 
   void _startOtpResendCountdown() {
-    countdown.value = 60;
+    countdown.value = 120;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (countdown.value > 0) {
         countdown.value--;
@@ -110,13 +110,20 @@ class LoginController extends GetxController {
   }
 
   Future<void> _verifyOTP(otpCode) async {
-    Get.snackbar("Invalid otp", "Please enter the otp code. We send to your mobile number.");
     printInfo(info: "Verify OTP code start, ");
-    PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: _verificationId, smsCode: otpCode);
-    final UserCredential userCredential = await _auth.signInWithCredential(credential);
-    if (userCredential.user != null) {
-      _userLoggedIn(userCredential.user!);
-    } else {
+    _setLoadingState(true);
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: _verificationId, smsCode: otpCode);
+      final UserCredential userCredential = await _auth.signInWithCredential(credential);
+      if (userCredential.user != null) {
+        _userLoggedIn(userCredential.user!);
+      } else {
+        Get.snackbar("Invalid otp", "Please enter the otp code. We send to your mobile number.");
+        _setLoadingState(false);
+      }
+    } catch (e) {
+      print(e);
+      _setLoadingState(false);
       Get.snackbar("Invalid otp", "Please enter the otp code. We send to your mobile number.");
     }
   }

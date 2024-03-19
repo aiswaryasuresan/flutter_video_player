@@ -88,8 +88,8 @@ class HomeController extends GetxController {
   void _setChewieController() {
     chewieController = ChewieController(
       videoPlayerController: videoPlayerController!,
-      autoPlay: false,
-      looping: true,
+      autoPlay: true,
+      looping: false,
       additionalOptions: (BuildContext context) => [
         OptionItem(
           onTap: _fastForward,

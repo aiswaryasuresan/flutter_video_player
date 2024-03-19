@@ -8,12 +8,14 @@ import 'package:flutter_video_player/app/common/utils/utils.dart';
 import 'package:flutter_video_player/app/controllers/auth_controller.dart';
 import 'package:flutter_video_player/app/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class RegisterController extends GetxController {
   final formKey = GlobalKey<FormState>();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController dobController = TextEditingController();
+  String dob = "";
   File? userImageFile;
   bool isLoading = false;
   final FirebaseStorage _storage = FirebaseStorage.instance;
@@ -75,7 +77,6 @@ class RegisterController extends GetxController {
   void _registerUserWithImage(String downloadURL) async {
     String name = nameController.text;
     String email = emailController.text;
-    String dob = dobController.text;
 
     await _fireStore.collection("users").doc(authController.uid).set({
       'username': name,
@@ -84,5 +85,21 @@ class RegisterController extends GetxController {
       'profileImageUrl': downloadURL, // Example profile image URL
     });
     Get.offAllNamed(Routes.HOME);
+  }
+
+  Future<void> selectDob(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2101),
+    );
+
+    if (pickedDate != null && pickedDate != DateTime.now()) {
+      print('Selected date: $pickedDate');
+      final formattedDate = DateFormat('MMMM d, yyyy').format(pickedDate);
+      dob = DateFormat('YYYY-MM-DD').format(pickedDate);
+      dobController.text = formattedDate;
+    }
   }
 }

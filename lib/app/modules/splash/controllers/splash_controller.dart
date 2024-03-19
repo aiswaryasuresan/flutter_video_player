@@ -18,12 +18,12 @@ class SplashController extends GetxController {
     if (auth.isLoggedIn) {
       DocumentSnapshot userSnapshot = await _fireStore.collection("users").doc(auth.uid).get();
       if (userSnapshot.exists) {
-        Get.toNamed(Routes.HOME);
+        Get.offNamed(Routes.HOME);
       } else {
         Get.offNamed(Routes.REGISTER);
       }
     } else {
-      Get.toNamed(Routes.LOGIN);
+      Get.offNamed(Routes.LOGIN);
     }
   }
 

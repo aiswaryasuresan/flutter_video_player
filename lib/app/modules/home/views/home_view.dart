@@ -2,6 +2,7 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_video_player/app/modules/home/controllers/home_controller.dart';
+import 'package:flutter_video_player/app/modules/home/views/home_drawer.dart';
 import 'package:flutter_video_player/app/modules/widgets/loading_widget.dart';
 import 'package:get/get.dart';
 
@@ -15,6 +16,7 @@ class HomeView extends StatelessWidget {
         title: const Text('Videos'),
         centerTitle: true,
       ),
+      drawer: const HomeDrawer(),
       body: GetBuilder<HomeController>(builder: (homeController) {
         return homeController.isLoading
             ? const LoadingWidget()

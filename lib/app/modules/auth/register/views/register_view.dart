@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_video_player/app/common/utils/utils.dart';
 import 'package:flutter_video_player/app/modules/widgets/loading_widget.dart';
 import 'package:flutter_video_player/app/modules/widgets/profile_image_widget.dart';
 import 'package:get/get.dart';
@@ -56,6 +57,9 @@ class RegisterView extends StatelessWidget {
                             if ((value ?? '').isEmpty) {
                               return 'Please enter your email';
                             }
+                            if (!Utils.isValidEmail(value!)) {
+                              return 'Enter a valid email address';
+                            }
                             return null;
                           },
                         ),
@@ -63,6 +67,8 @@ class RegisterView extends StatelessWidget {
                         TextFormField(
                           controller: signupController.dobController,
                           decoration: const InputDecoration(labelText: 'DOB'),
+                          onTap: () => signupController.selectDob(context),
+                          readOnly: true,
                           validator: (value) {
                             if ((value ?? '').isEmpty) {
                               return 'Please enter your Date of Birth';
