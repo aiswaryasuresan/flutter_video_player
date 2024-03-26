@@ -49,6 +49,8 @@ class AuthController extends GetxController {
         email = docData['email'].toString();
         profileImageUrl = docData['profileImageUrl'].toString();
         update();
+      } else {
+        Get.offAllNamed(Routes.REGISTER);
       }
     });
   }

@@ -13,7 +13,7 @@ import 'package:path_provider/path_provider.dart';
 class VideoStorage {
   static Future<void> downloadAndEncryptVideo(ModelS3Video video) async {
     print("Starting download video : ${video.url}");
-    final urlMd5 = _getUrlMd5(video.url);
+    String urlMd5 = _getUrlMd5(video.url);
     if (Storage.hasData(urlMd5)) {
       return;
     }
@@ -23,13 +23,15 @@ class VideoStorage {
         Directory appDocumentsDirectory = await getApplicationDocumentsDirectory();
         String extension = video.url.split('.').last;
         String videoFilePath = '${appDocumentsDirectory.path}/temp_$urlMd5.$extension';
+
         print("Video File url: $videoFilePath");
         File videoFile = File(videoFilePath);
         final videoBytes = response.bodyBytes;
         await videoFile.writeAsBytes(videoBytes);
-        final encryptedFilePath = '${appDocumentsDirectory.path}/$urlMd5.$extension';
 
+        final encryptedFilePath = '${appDocumentsDirectory.path}/$urlMd5.$extension';
         print("Video encryptedFilePath: $encryptedFilePath");
+
         final videoString = String.fromCharCodes(videoBytes);
         final key = encrypt.Key.fromUtf8(Constants.videoEncryptionKey);
         final iv = encrypt.IV.fromLength(16);
@@ -38,7 +40,9 @@ class VideoStorage {
 
         File encryptedVideoFile = File(encryptedFilePath);
         await encryptedVideoFile.writeAsBytes(encryptedVideoBytes.bytes);
+
         Storage.saveValueForce(urlMd5, encryptedFilePath);
+
         print('Video downloaded, encrypted, and stored successfully.');
       } else {
         print('Failed to download video. Status code: ${response.statusCode}');

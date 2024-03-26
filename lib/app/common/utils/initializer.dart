@@ -30,6 +30,7 @@ abstract class Initializer {
   }
 }
 
+
 class InitialBindings extends Bindings {
   @override
   void dependencies() {

@@ -2,6 +2,7 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_video_player/app/modules/home/controllers/home_controller.dart';
+import 'package:flutter_video_player/app/modules/home/views/button_widget.dart';
 import 'package:flutter_video_player/app/modules/home/views/home_drawer.dart';
 import 'package:flutter_video_player/app/modules/widgets/loading_widget.dart';
 import 'package:get/get.dart';
@@ -65,31 +66,6 @@ class HomeView extends StatelessWidget {
                 ],
               );
       }),
-    );
-  }
-}
-
-class VideoRoundButton extends StatelessWidget {
-  final IconData icon;
-  final VoidCallback onPressed;
-
-  const VideoRoundButton({super.key, required this.icon, required this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        child: SizedBox(
-          height: 50,
-          width: 60,
-          child: IconButton(
-            onPressed: onPressed,
-            icon: Icon(icon),
-          ),
-        ),
-      ),
     );
   }
 }

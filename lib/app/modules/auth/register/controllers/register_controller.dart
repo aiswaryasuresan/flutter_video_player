@@ -92,7 +92,7 @@ class RegisterController extends GetxController {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(1900),
-      lastDate: DateTime(2101),
+      lastDate: DateTime.now(),
     );
 
     if (pickedDate != null && pickedDate != DateTime.now()) {

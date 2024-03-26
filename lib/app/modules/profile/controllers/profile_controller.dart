@@ -24,7 +24,7 @@ class ProfileController extends GetxController {
 
   @override
   void onInit() {
-    authController = Get.find();
+    authController = Get.find<AuthController>();
     _setUserData();
     super.onInit();
   }
